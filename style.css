@@ -1,0 +1,71 @@
+html {font-size: 62.5%;}
+
+.leaflet-popup-content-wrapper {
+    width: 35rem
+}
+
+.leaflet-popup-content {
+    width: 92% !important;
+    margin: 1rem auto;
+}
+
+.leaflet-popup-content p {
+    font-size: 1.8rem;
+    margin: 1rem;
+}
+
+#box {
+    margin: 3%;
+    text-align: center;
+}
+
+.arrow-right{
+    display: inline-block;
+    text-align : center;
+    cursor: pointer;
+    border-style: solid;
+
+    border-width: 12px 0 12px 12px;
+    border-color: transparent transparent transparent rgb(141, 141, 141);
+    margin-left: 10px;
+}
+
+.arrow-left{
+    display: inline-block;
+    text-align : center;
+    cursor: pointer;
+    border-style: solid;
+
+    border-width: 12px 12px 12px 0;
+    border-color: transparent rgb(141, 141, 141) transparent transparent;
+    margin-right: 10px;
+}
+
+.slide {
+    text-align : center;
+    margin-top: 3px;
+    margin-bottom: 2px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+img {
+    width: 100%;
+}
+
+@media screen and (max-width: 770px) {
+    .leaflet-popup-content-wrapper {
+        width: 25rem
+    }
+    
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .leaflet-popup-content p {
+        font-size: 1.0rem;
+        margin: 0.5rem;
+    }
+}
