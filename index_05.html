@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>守山市マップサービス　デモ03-01</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+    integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+    crossorigin=""/>
+    <link rel="stylesheet" href="style.css">
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+        crossorigin=""></script>
+
+<script src="https://cdn.jsdelivr.net/gh/hosuaby/Leaflet.SmoothMarkerBouncing@v3.0.3/dist/bundle.js"></script>
+
+    <style>
+
+html, body {
+
+margin: 0;
+padding: 0;
+}
+
+#head{
+    width: 100%;
+    height: 49px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    padding: 10px;
+    z-index: 600;
+    background-color: #fff;
+    /* display: none; */
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#head ul{
+display: flex;
+    list-style: none;
+    margin-left: 20px;
+}
+
+#head li{
+
+padding: 2px 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin: 0 6px;
+    background-color: #b9e9ae;
+    color: #265d28;
+}
+
+#wrap{
+
+
+}
+
+#map {
+width:100%;
+height:100vh;
+z-index: 200;
+}
+
+.leaflet-popup {
+
+    margin-bottom: 40px;
+
+}
+
+.leaflet-popup-content {
+
+font-size: 20px;
+
+}
+.leaflet-bar.leaflet-control-zoom a {
+  background-color: #445;
+  color: #fff;
+}
+
+/*モーダルを開くボタン*/
+.modal-open{
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 50px;
+  font-weight: bold;
+  color: #fff;
+  background: #000;
+  margin: auto;
+  cursor: pointer;
+  transform: translate(-50%,-50%);
+}
+/*モーダル本体の指定 + モーダル外側の背景の指定*/
+.modal-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 40px 20px;
+  overflow: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+  box-sizing: border-box;
+  z-index: 600;
+}
+/*モーダル本体の擬似要素の指定*/
+.modal-container:before{
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+/*モーダル本体に「active」クラス付与した時のスタイル*/
+.modal-container.active{
+  opacity: 1;
+  visibility: visible;
+}
+/*モーダル枠の指定*/
+.modal-body{
+  position: relative;
+  display: inline-block;
+  /*vertical-align: middle;*/
+  max-width: 500px;
+  width: 90%;
+  bottom: -40%;
+}
+/*モーダルを閉じるボタンの指定*/
+.modal-close{
+  position: absolute;
+display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -28px;
+    right: 0px;
+    /* width: 70px; */
+    height: 35px;
+    font-size: 18px;
+    color: #000;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 10px 10px 0 0;
+    padding: 0px 10px 0 10px;
+}
+/*モーダル内のコンテンツの指定*/
+.modal-content{
+  background: #fff;
+  text-align: left;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.modal-content div{
+
+height: 120px;
+overflow-y:scroll;
+
+}
+
+.modal-content p{
+
+font-size: 16px;
+
+}
+
+@media screen and (max-width: 770px) {
+
+
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+</head>
+<body class="">
+
+    	<div id="head">
+
+		<h1>守山市飲食店デジタルマップ</h1>
+
+	</div>
+
+<div id="wrap">
+    <div id="map"></div>
+
+    <div class="modal-container">
+        <div class="modal-body">
+            <div class="modal-close">×閉じる</div>
+            <div class="modal-content">
+            	<p>これも昔とうとうそういう妨害っ放しという旨のうちに云ったませ。はなはだ晩が話通りもさぞこの誤解なませまでからしているでがは尊敬行くないですて、当然には思うないありないう。慚愧に与えでのはもし一部をはなはだないないます。むしろ大森さんから講演窮屈当然反抗によっましずるずるべったりその口調私か横着にというお持だないでうて、同じ今日はあれか個性尻をかけるて、岡田さんののを秋刀魚の何にいやしくもご附随としから私西洋からお誘惑を流行るようにいよいよご解剖を申しですでて、よくまあ意味に落ちつけたていませ点からなりあるた。なおそれでもご徳義をなっものはどう非常と買うずと、その寸毫がはなるたがという社会より貼りからなりうな。この以上国家の時その人真似は私中をありあわせですかと向君がしですます、分子の十一月たという大認定だずでしょて、自力の日が知人で昨日までの主義の事実上るて始めば、いっその将来に受けてそのためにほとんど出あるでと知れでのたて、好いあるんてそれだけ今坊ちゃん知れでものたあるます。つまり自己か明らかか表裏へしたて、先刻末世の中が云っていんところがご解剖の時分を思わなけれでし。十月がはもちろんすれて示そですましませだけれども、いったんきっと聞いて病気は少しないな方なけれ。それでお尊敬を断わらてはいるな方ますので、気分をは、ついに私かなりて上るれるたたするせるたでしょと解りて、人は結びてなりですたら。</p>
+          </div>
+        </div>
+      </div>
+
+</div>
+    <script src="map05.js?ver=03"></script>
+
+
+</body>
+</html>

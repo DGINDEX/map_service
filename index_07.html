@@ -67,19 +67,6 @@ width:100%;
 height:100vh;
 }
 
-#slide_menu{
-    position: fixed;
-    left: -240px;
-    width: 220px;
-    height: 100%;
-    background: #ffffff;
-    z-index:500;
-    font-size: 18px;
-    padding: 10px;
-    border-right: 1px solid #ccc;
-    top: 50px;
-    padding-top: 50px;
-}
 
 .leaflet-popup {
 
@@ -97,6 +84,13 @@ font-size: 20px;
   color: #fff;
 }
 
+
+
+@media screen and (max-width: 770px) {
+
+
+}
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -106,28 +100,16 @@ font-size: 20px;
 </head>
 <body class="">
 
-    	<div id="head">
-
-		<h1>守山市飲食店デジタルマップ</h1>
-
-	<ul>
-		<li>カフェ</li>
-		<li>レストラン</li>
-	</ul>
-
-	</div>
-
 <div id="wrap">
 
-<nav id="slide_menu">
-    <input type="hidden" class="info_no" value="">
-    <p class="info_text">情報欄</p>
-    <p class="name"></p>
-</nav>
 
     <div id="map"></div>
+
+    <div id="map02"></div>
+
+
     <div id="foot"></div>
 </div>
-    <script src="map03.js"></script>
+    <script src="map07.js"></script>
 </body>
 </html>

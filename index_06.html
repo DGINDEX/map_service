@@ -97,6 +97,53 @@ font-size: 20px;
   color: #fff;
 }
 
+
+#testwrap2{
+    position: absolute;
+    bottom: 0;
+    z-index: 600;
+    width: 100%;
+    margin: 0 auto;
+    display: none;
+    height: 30%;
+    background: #ffffff;
+    z-index:500;
+    font-size: 18px;
+    padding: 10px;
+    box-sizing:border-box;
+}
+
+#inner{
+overflow-y: scroll;
+    height: 80%;
+    padding: 10px;
+}
+
+@media screen and (max-width: 770px) {
+
+#slide_menu{
+
+display:none;
+
+}
+
+#testwrap2{
+    position: absolute;
+    bottom: 0;
+    z-index: 600;
+    width: 100%;
+    margin: 0 auto;
+    display: none;
+    height: 50%;
+    background: #ffffff;
+    z-index:500;
+    font-size: 18px;
+    padding: 10px;
+    box-sizing:border-box;
+}
+
+}
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -105,17 +152,6 @@ font-size: 20px;
 
 </head>
 <body class="">
-
-    	<div id="head">
-
-		<h1>守山市飲食店デジタルマップ</h1>
-
-	<ul>
-		<li>カフェ</li>
-		<li>レストラン</li>
-	</ul>
-
-	</div>
 
 <div id="wrap">
 
@@ -126,8 +162,28 @@ font-size: 20px;
 </nav>
 
     <div id="map"></div>
+
+    <div id="testwrap2">
+    <input type="hidden" class="info_no" value="">
+
+	<div id="inner">
+	    <p class="info_text">情報欄</p>
+	    <p class="name"></p>
+	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
+	</div>
+
+    </div>
+
+
     <div id="foot"></div>
 </div>
-    <script src="map03.js"></script>
+    <script src="map06_sp.js"></script>
 </body>
 </html>
