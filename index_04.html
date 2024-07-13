@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
     integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
     crossorigin=""/>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?ver=02">
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
         integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
@@ -20,7 +20,7 @@
     <style>
 
 html, body {
-
+overflow: hidden;
 margin: 0;
 padding: 0;
 }
@@ -83,26 +83,9 @@ font-size: 20px;
   color: #fff;
 }
 
-#testwrap2{
-    position: absolute;
-    bottom: 0;
-    z-index: 600;
-    width: 100%;
-    margin: 0 auto;
-    display: none;
-    height: 30%;
-    background: #ffffff;
-    z-index:500;
-    font-size: 18px;
-    padding: 10px;
-    box-sizing:border-box;
-}
 
-#inner{
-overflow-y: scroll;
-    height: 80%;
-    padding: 10px;
-}
+
+
 
 @media screen and (max-width: 770px) {
 
@@ -112,18 +95,23 @@ display:none;
 
 }
 
+#inner{
+overflow-y: scroll;
+    height: 70%;
+    padding: 10px;
+}
+
 #testwrap2{
     position: absolute;
-    bottom: 0;
-    z-index: 600;
+    bottom: -60px;
     width: 100%;
     margin: 0 auto;
     display: none;
-    height: 50%;
+    height: 60%;
     background: #ffffff;
     z-index:500;
     font-size: 18px;
-    padding: 10px;
+    padding: 10px 0 40px 0;
     box-sizing:border-box;
 }
 
@@ -142,7 +130,6 @@ display:none;
 
 	</div>
 
-
 <div id="wrap">
 
 <nav id="slide_menu">
@@ -152,12 +139,13 @@ display:none;
 </nav>
 
     <div id="map"></div>
+
     <div id="testwrap2">
     <input type="hidden" class="info_no" value="">
 
+	    <p class="name"></p>
 	<div id="inner">
 	    <p class="info_text">情報欄</p>
-	    <p class="name"></p>
 	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
 	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
 	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
@@ -167,35 +155,31 @@ display:none;
 	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
 	    <p>コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント</p>
 	</div>
-
     </div>
+
+
 </div>
 
 
+<script>
 
-
-
-<script src="map04.js"></script>
-
-/*
 jQuery(document).ready(function($) {
 if (window.matchMedia( '(min-width: 769px)' ).matches) {
 $.ajax({
-url: 'map03.js?ver=14',
+url: 'map03.js?ver=24',
 dataType: 'script',
 cache: false
 });
 } else {
 $.ajax({
-url: 'map04.js?ver=14',
+url: 'map04.js?ver=24',
 dataType: 'script',
 cache: false
 });
 };
 });
 
-*/
-
+</script>
 
 </body>
 </html>

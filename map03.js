@@ -81,7 +81,7 @@ var menu = $('#slide_menu'), // スライドインするメニューを指定
 			    body.addClass("open");
 
 			    //$("#map").css("left","120px");
-			    $("#map").animate({'left' : '120px'}, 300);
+			    $("#map").animate({'left' : '120px'}, 200);
 
 			}
 

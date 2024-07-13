@@ -44,12 +44,12 @@ var menu = $('#slide_menu'), // スライドインするメニューを指定
 
 		    	if(info_no == number.no){
 
+			    $("#testwrap2").slideUp();
+
 	                    $('.info_no').val('');
 
 			    body.removeClass();
-			    $("#map").animate({'top' : 0 }, 300);
-
-				    $("#testwrap2").slideUp();
+			    $("#map").animate({'top' : 0 }, 200);
 
 			}else{
 
@@ -57,22 +57,21 @@ var menu = $('#slide_menu'), // スライドインするメニューを指定
 
 			    body.addClass("open");
 
-			    $("#map").animate({'top' : '-180px'}, 300);
+			    $("#map").animate({'top' : '-150px'}, 200);
 
 
 				$("#testwrap2").slideDown();
-
+	    			$('#inner').scrollTop(0);
 			}
 
 
 		}else{
 
-		    body.removeClass();
-		    $("#map").animate({'top' : 0 }, 300);
-
-
-
 	    $("#testwrap2").slideUp();
+
+		    body.removeClass();
+		    $("#map").animate({'top' : 0 }, 200);
+
 
 		}
 
@@ -124,9 +123,9 @@ var menu = $('#slide_menu'), // スライドインするメニューを指定
 	    body.removeClass();
 	    $('.info_no').val('');
 
-	    $("#map").animate({'top' : 0 }, 300);
-
 	    $("#testwrap2").slideUp();
+
+	    $("#map").animate({'top' : 0 }, 200);
 
     }
 
