@@ -163,20 +163,26 @@ overflow-y: scroll;
 
 <script>
 
-jQuery(document).ready(function($) {
+$(window).on('load resize', function(){
+
 if (window.matchMedia( '(min-width: 769px)' ).matches) {
+
 $.ajax({
 url: 'map03.js?ver=24',
 dataType: 'script',
 cache: false
 });
+
 } else {
+
 $.ajax({
 url: 'map04.js?ver=24',
 dataType: 'script',
 cache: false
 });
+
 };
+
 });
 
 </script>

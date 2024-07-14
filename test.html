@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	  crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"></script>
+	<script>
+		function readCsv(data) {
+			var target = '#csv-body';
+			var csv = $.csv.toArrays(data);
+			var insert = '';
+			$(csv).each(function() {
+
+				if (this.length > 0) {
+					insert += '<tr>';
+					$(this).each(function() {
+						insert += '<td>' + this + '</td>';
+					});
+					insert += '</tr>';
+				}
+
+			});
+			$(target).append(insert);
+		}
+
+		var csvfile = 'test.csv';
+		$(function(){
+			$.get(csvfile, readCsv, 'text');
+		});
+	</script>
+</head>
+<body>
+	<table>
+		<caption>紫陽花の名所</caption>
+		<thead>
+			<tr><th>名前</th><th>場所</th><th>種類</th><th>株数</th></tr>
+		</thead>
+		<tbody id='csv-body' />
+	</table>
+</body>
+</html>

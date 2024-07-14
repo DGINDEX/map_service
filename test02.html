@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	  crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"></script>
+
+	<script>
+
+// CSVを配列で読み込む
+$(function () {
+  function parseCsv(data) {
+    // csv配列を変数に格納
+
+    //var csvArray = $.csv.toArrays(data);
+
+    var csvArray = data;
+    let jsonArray = [];
+
+    let RowArray = csvArray.split(/\r\n|\n|\r/);
+    let items = RowArray[0].split(',');
+
+    for(let i = 1; i < RowArray.length; i++){
+
+        var currentLine = RowArray[i]
+	
+        if (/^[,\s]*$/.test(currentLine)) {
+            continue;
+        }
+
+        let cellArray = RowArray[i].split(',');
+
+        let line = new Object();
+
+        for(let j = 0; j < items.length; j++){
+
+            line[items[j]] = cellArray[j];
+
+        }
+
+        jsonArray.push(line);
+
+    }
+
+    console.log(jsonArray);
+
+  }
+
+  // CSVファイルの読み込み
+  $.get("test.csv", parseCsv, "text");
+});
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
