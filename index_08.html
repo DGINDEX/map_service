@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>守山市マップサービス　デモ03-01</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+    integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+    crossorigin=""/>
+    <link rel="stylesheet" href="style.css">
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+        crossorigin=""></script>
+
+<script src="https://cdn.jsdelivr.net/gh/hosuaby/Leaflet.SmoothMarkerBouncing@v3.0.3/dist/bundle.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"></script>
+
+    <style>
+
+html, body {
+
+margin: 0;
+padding: 0;
+}
+
+#head{
+    width: 100%;
+    height: 49px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    padding: 10px;
+    z-index: 600;
+    background-color: #fff;
+    /* display: none; */
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#head ul{
+display: flex;
+    list-style: none;
+    margin-left: 20px;
+}
+
+#head li{
+
+padding: 2px 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin: 0 6px;
+    background-color: #b9e9ae;
+    color: #265d28;
+}
+
+#wrap{
+
+overflow: hidden;
+
+}
+
+#map {
+width:100%;
+height:100vh;
+}
+
+
+.leaflet-popup {
+
+    margin-bottom: 40px;
+
+}
+
+.leaflet-popup-content {
+
+font-size: 18px;
+    text-align: center;
+
+}
+.leaflet-bar.leaflet-control-zoom a {
+  background-color: #445;
+  color: #fff;
+}
+
+
+
+@media screen and (max-width: 770px) {
+
+
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+</head>
+<body class="">
+
+    	<div id="head">
+
+		<h1>守山市飲食店デジタルマップ</h1>
+
+	</div>
+
+<div id="wrap">
+
+<nav id="slide_menu">
+    <input type="hidden" class="info_no" value="">
+    <p class="info_text">情報欄</p>
+    <p class="name"></p>
+    <span class="comment"></span>
+</nav>
+
+    <div id="map"></div>
+
+    <div id="testwrap2">
+    <input type="hidden" class="info_no" value="">
+
+	    <p class="name"></p>
+	<div id="inner">
+	    <p class="info_text">情報欄</p>
+	    <span class="comment"></span>
+	</div>
+    </div>
+
+    <div id="foot"></div>
+</div>
+
+<script>
+
+$(window).on('load resize', function(){
+
+if (window.matchMedia( '(min-width: 769px)' ).matches) {
+
+$.ajax({
+url: 'map08.js?ver=07',
+dataType: 'script',
+cache: false
+});
+
+} else {
+
+$.ajax({
+url: 'map04.js?ver=24',
+dataType: 'script',
+cache: false
+});
+
+};
+
+});
+
+</script>
+
+</body>
+</html>

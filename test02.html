@@ -11,6 +11,7 @@
 
 // CSVを配列で読み込む
 $(function () {
+
   function parseCsv(data) {
     // csv配列を変数に格納
 
@@ -44,12 +45,38 @@ $(function () {
 
     }
 
-    console.log(jsonArray);
+    var json = JSON.stringify( jsonArray );
+
+    //console.log(json);
+
+	for( key in jsonArray ){
+
+		//console.log(jsonArray[key]);
+
+		//console.log(jsonArray[key].lat);
+
+		makeMarker(jsonArray[key]);
+	}
 
   }
 
-  // CSVファイルの読み込み
-  $.get("test.csv", parseCsv, "text");
+	function makeMarker( mapData ){
+
+		console.log(mapData.name);
+
+	}
+
+
+//csvファイルとの連携
+
+  var csvfile = 'test.csv';
+
+	$(function(){
+  		// CSVファイルの読み込み
+  		$.get(csvfile, parseCsv, "text");
+	});
+
+
 });
 
 	</script>

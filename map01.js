@@ -16,7 +16,6 @@
     }
 ]}
 
-
 var map = L.map(
     'map',
     {
@@ -24,12 +23,12 @@ var map = L.map(
         crs: L.CRS.EPSG3857,
         zoom: 13,
   	minZoom: 12,
-  	maxZoom: 17,
+  	maxZoom: 16,
         zoomControl: false,
         preferCanvas: false,
         doubleClickZoom: false
     }
-).on('click', ()=>L.Marker.stopAllBouncingMarkers());
+);
 
 L.tileLayer = L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', {
 	attribution: "<a href='https://developers.google.com/maps/documentation' target='_blank'>Google Map</a>"
@@ -44,70 +43,15 @@ function groupClick(e) {
 
     const number = e;
 
-/*
-var menu = $('#slide_menu'), // スライドインするメニューを指定
-    menuBtn = $('#button'), // メニューボタンを指定
-    body = $(document.body),     
-    menuWidth = menu.outerWidth();
-
-    var open_check = body.attr("class");
-
-    //body.toggleClass('open');
-
-    var info_no = $('.info_no').val();
-
-	$(".info_text").text("情報ナンバー"+number.no+"");
-
-	$(".name").text(""+number.title+"");
-
-		if(number !=""){
-
-		    	if(info_no == number.no){
-
-	                    $('.info_no').val('');
-
-		            menu.animate({'left' : -menuWidth }, 300);
-		            body.animate({'left' : 0 }, 300);
-
-			    body.removeClass();
-			    $("#map").animate({'left' : 0 }, 300);
-
-			}else{
-
-	                    $('.info_no').val(number.no);
-
-		            body.animate({'left' : menuWidth }, 300);
-		            menu.animate({'left' : 0 }, 300);
-
-			    body.addClass("open");
-
-			    //$("#map").css("left","120px");
-			    $("#map").animate({'left' : '120px'}, 300);
-
-			}
-
-
-		}else{
-
-	            menu.animate({'left' : -menuWidth }, 300);
-	            body.animate({'left' : 0 }, 300);
-
-		    body.removeClass();
-		    $("#map").animate({'left' : 0 }, 300);
-
-		}
-
-*/
-
-}
+};
 
 //var quad_x_Icon     = L.icon({ iconUrl: 'quad_x-90.png', iconRetinaUrl: 'quad_x-90.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -50]});
 
 
 	//マーカー生成
 	const mapData = [
-		{ lat : '35.052828539467384', lng : '135.9928089212755', no : '15', title:'カフェ　イエロー'}, 
-		{ lat : '35.0460587074825', lng : '135.9796371027813', no : '10', title:'カレーハウス　ムスリム'}, 
+		{ lat : '35.052828539467384', lng : '135.9928089212755', no : '15', title:'お店の名前1'}, 
+		{ lat : '35.051828539467384', lng : '135.9908089212755', no : '10', title:'お店の名前2'}, 
 	];
 	for( key in mapData ){
 		makeMarker(mapData[key]);
@@ -115,23 +59,12 @@ var menu = $('#slide_menu'), // スライドインするメニューを指定
 
 	function makeMarker( mapData ){
 
-		L.marker([mapData.lat, mapData.lng],{icon: L.icon({ iconUrl: 'quad_x-90.png', iconRetinaUrl: 'quad_x-90.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -50]})})
+		L.marker([mapData.lat, mapData.lng])
 		.addTo(map)
-		.setBouncingOptions({
-			bounceHeight : 10, //バウンドする高さ
-			bounceSpeed : 60, //バウンドするスピード(値が低いほど速く動く)
-			elastic : true,
-			exclusive : true, //バウンドする際、他のマーカーは停止
-		})
+		.bindPopup(""+mapData.title+"")
 		.on('click', function() {
-			this.toggleBouncing();
-			//var newLat = Number(mapData.lat) - 0.015;
-			var newLng = Number(mapData.lng) - 0.025;
-			var newLat = Number(mapData.lat);
-			//var newLng = Number(mapData.lng);
-			map.setView([newLat, newLng]);
-			groupClick(mapData);
-			
+			groupClick(mapData.no);
+			map.setView([mapData.lat, mapData.lng]);
 		});
 	}
 
@@ -139,26 +72,7 @@ map.on('click', onMapClick);
 
 function onMapClick(e) {
 
-/*
-var menu = $('#slide_menu'), // スライドインするメニューを指定
-    menuBtn = $('#button'), // メニューボタンを指定
-    body = $(document.body),     
-    menuWidth = menu.outerWidth();
 
-    var open_check = body.attr("class");
 
-    if(open_check == "open"){
-
-            menu.animate({'left' : -menuWidth }, 300);
-            body.animate({'left' : 0 }, 300);
-
-	    body.removeClass();
-	    $('.info_no').val('');
-
-	    $("#map").animate({'left' : 0 }, 300);
-
-    }
-*/
 
 }
-

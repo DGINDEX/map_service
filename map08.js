@@ -16,7 +16,6 @@
     }
 ]}
 
-
 var map = L.map(
     'map',
     {
@@ -24,7 +23,7 @@ var map = L.map(
         crs: L.CRS.EPSG3857,
         zoom: 13,
   	minZoom: 12,
-  	maxZoom: 17,
+  	maxZoom: 16,
         zoomControl: false,
         preferCanvas: false,
         doubleClickZoom: false
@@ -44,7 +43,6 @@ function groupClick(e) {
 
     const number = e;
 
-/*
 var menu = $('#slide_menu'), // スライドインするメニューを指定
     menuBtn = $('#button'), // メニューボタンを指定
     body = $(document.body),     
@@ -56,13 +54,13 @@ var menu = $('#slide_menu'), // スライドインするメニューを指定
 
     var info_no = $('.info_no').val();
 
-	$(".info_text").text("情報ナンバー"+number.no+"");
+	$(".info_text").text("情報ナンバー"+e.no+"");
 
-	$(".name").text(""+number.title+"");
+	$(".comment").html('<p>'+e.comment+'</p>');
 
 		if(number !=""){
 
-		    	if(info_no == number.no){
+		    	if(info_no == number){
 
 	                    $('.info_no').val('');
 
@@ -70,19 +68,15 @@ var menu = $('#slide_menu'), // スライドインするメニューを指定
 		            body.animate({'left' : 0 }, 300);
 
 			    body.removeClass();
-			    $("#map").animate({'left' : 0 }, 300);
 
 			}else{
 
-	                    $('.info_no').val(number.no);
+	                    $('.info_no').val(e.no);
 
 		            body.animate({'left' : menuWidth }, 300);
 		            menu.animate({'left' : 0 }, 300);
 
 			    body.addClass("open");
-
-			    //$("#map").css("left","120px");
-			    $("#map").animate({'left' : '120px'}, 300);
 
 			}
 
@@ -93,30 +87,74 @@ var menu = $('#slide_menu'), // スライドインするメニューを指定
 	            body.animate({'left' : 0 }, 300);
 
 		    body.removeClass();
-		    $("#map").animate({'left' : 0 }, 300);
 
 		}
-
-*/
 
 }
 
 //var quad_x_Icon     = L.icon({ iconUrl: 'quad_x-90.png', iconRetinaUrl: 'quad_x-90.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -50]});
 
+// CSVを配列で読み込む
+$(function () {
 
-	//マーカー生成
-	const mapData = [
-		{ lat : '35.052828539467384', lng : '135.9928089212755', no : '15', title:'カフェ　イエロー'}, 
-		{ lat : '35.0460587074825', lng : '135.9796371027813', no : '10', title:'カレーハウス　ムスリム'}, 
-	];
-	for( key in mapData ){
-		makeMarker(mapData[key]);
+  function parseCsv(data) {
+    // csv配列を変数に格納
+
+    //var csvArray = $.csv.toArrays(data);
+
+    var csvArray = data;
+    let jsonArray = [];
+
+    let RowArray = csvArray.split(/\r\n|\n|\r/);
+    let items = RowArray[0].split(',');
+
+    for(let i = 1; i < RowArray.length; i++){
+
+        var currentLine = RowArray[i]
+	
+        if (/^[,\s]*$/.test(currentLine)) {
+            continue;
+        }
+
+        let cellArray = RowArray[i].split(',');
+
+        let line = new Object();
+
+        for(let j = 0; j < items.length; j++){
+
+            line[items[j]] = cellArray[j];
+
+        }
+
+        jsonArray.push(line);
+
+    }
+
+    var json = JSON.stringify( jsonArray );
+
+    //console.log(json);
+
+	for( key in jsonArray ){
+
+		//console.log(jsonArray[key]);
+
+		//console.log(jsonArray[key].lat);
+
+		makeMarker(jsonArray[key]);
 	}
+
+  }
 
 	function makeMarker( mapData ){
 
-		L.marker([mapData.lat, mapData.lng],{icon: L.icon({ iconUrl: 'quad_x-90.png', iconRetinaUrl: 'quad_x-90.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -50]})})
+		//console.log(mapData.name);
+
+		//var quad_x_Icon = L.icon({ iconUrl: mapData.icon, iconRetinaUrl: 'quad_x-90.png', iconSize: [50, 50], iconAnchor: [25, 25], popupAnchor: [0, -50]});
+
+		//L.marker([mapData.lat, mapData.lng],{icon:quad_x_Icon})
+		L.marker([mapData.lat, mapData.lng])
 		.addTo(map)
+		.bindPopup(""+mapData.name+"")
 		.setBouncingOptions({
 			bounceHeight : 10, //バウンドする高さ
 			bounceSpeed : 60, //バウンドするスピード(値が低いほど速く動く)
@@ -125,21 +163,34 @@ var menu = $('#slide_menu'), // スライドインするメニューを指定
 		})
 		.on('click', function() {
 			this.toggleBouncing();
-			//var newLat = Number(mapData.lat) - 0.015;
-			var newLng = Number(mapData.lng) - 0.025;
-			var newLat = Number(mapData.lat);
-			//var newLng = Number(mapData.lng);
-			map.setView([newLat, newLng]);
 			groupClick(mapData);
-			
+			map.setView([mapData.lat, mapData.lng]);
 		});
+
 	}
+
+
+//csvファイルとの連携
+
+  var csvfile = '08.csv?ver=08';
+
+	$(function(){
+  		// CSVファイルの読み込み
+  		$.get(csvfile, parseCsv, "text");
+	});
+
+
+});
+
+
+
+
+
 
 map.on('click', onMapClick);
 
 function onMapClick(e) {
 
-/*
 var menu = $('#slide_menu'), // スライドインするメニューを指定
     menuBtn = $('#button'), // メニューボタンを指定
     body = $(document.body),     
@@ -155,10 +206,9 @@ var menu = $('#slide_menu'), // スライドインするメニューを指定
 	    body.removeClass();
 	    $('.info_no').val('');
 
-	    $("#map").animate({'left' : 0 }, 300);
-
     }
-*/
+
+
+
 
 }
-

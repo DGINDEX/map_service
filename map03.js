@@ -45,7 +45,6 @@ function groupClick(e) {
     const number = e;
 
 var menu = $('#slide_menu'), // スライドインするメニューを指定
-    menuBtn = $('#button'), // メニューボタンを指定
     body = $(document.body),     
     menuWidth = menu.outerWidth();
 
